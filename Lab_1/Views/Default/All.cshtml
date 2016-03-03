@@ -1,0 +1,18 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>All lines</title>
+</head>
+<body>
+    <table>
+        @{
+            foreach (var line in ViewBag.Lines)
+            {
+                <tr><td>@line</td></tr>
+            }
+        }
+    </table>
+    <form action="/Default/Index" method="GET">
+        <button type="submit">Back</button>
+    </form>
+</body>
+</html>
