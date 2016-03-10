@@ -1,4 +1,40 @@
-﻿.new-notepad input {
+﻿body {
+    margin: 20px;
+}
+
+.new-notepad input {
     display: inline-block;
     width: 200px;
+}
+
+.new-notepad {
+    text-align: center;
+    margin: 20px;
+}
+
+.notepads {
+    float: left;
+    width: 20%;
+}
+
+.notepad-i {
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    word-wrap: break-word;
+    background-color: whitesmoke;
+}
+
+.notepad-content {
+    float: left;
+    width: 80%;
+}
+
+.notepad-content textarea {
+    width: 100%;
+}
+
+.notepad-content button {
+    margin-top: 20px;
+    float: right;
 }

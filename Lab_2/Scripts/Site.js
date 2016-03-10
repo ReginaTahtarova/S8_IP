@@ -4,31 +4,70 @@
             return;
         }
 
-        var p = $.ajax({
-            url: '/api/notepad/create',
-            type: 'POST',
-            data: {
-                NotepadName: name
-            }
+        $.post('/api/notepad/create', { NotepadName: name }).success(function () {
+            /* Возможно не стоит вызывать из модели сторонние функции */
+            updateNotepads();
         });
+    },
 
-        p.success(function () {
-            
-        });
+    getNotepads: function () {
+        return $.get('/api/notepad/getNotepads');
+    },
 
-        p.error(function (error) {
-            debugger;
+    getNotepadContent: function (name) {
+        return $.get('/api/notepad/getNotepadContent/' + name);
+    },
+
+    updateNotepad: function(name, content) {
+        $.post('/api/notepad/update', {
+            NotepadName: name,
+            Content: content
+        }).success(function() {
+            alert('Обновление прошло успешно!');
         });
     }
 }
+
+var viewModel = new ViewModel();
 
 function init() {
-    ko.applyBindings(new viewModel());
+    ko.applyBindings(viewModel);
+    updateNotepads();
 }
 
-function viewModel() {
+function updateNotepads() {
+    model.getNotepads().success(function (data) {
+        viewModel.notepads(data);
+    });
+}
+
+function ViewModel() {
     this.newNotepadName = ko.observable();
+    this.notepads = ko.observableArray();
+    this.notepadContent = ko.observable();
+
+    this.currentNotepad;
+
+    var that = this;
+
     this.createNotepad = function () {
         model.createNotepad(this.newNotepadName());
-    }
+        this.newNotepadName('');
+    };
+
+    this.openNotepad = function (notepad) {
+        that.currentNotepad = notepad.notepadName;
+
+        model.getNotepadContent(notepad.notepadName).success(function (content) {
+            that.notepadContent(content);
+        });
+    };
+
+    this.saveContent = function() {
+        if (!this.currentNotepad) {
+            return;
+        }
+
+        model.updateNotepad(this.currentNotepad, this.notepadContent());
+    };
 }
