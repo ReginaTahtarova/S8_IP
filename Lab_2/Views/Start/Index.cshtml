@@ -21,9 +21,10 @@
         <button id="btn-create" class="btn btn-success" data-bind="click: createNotepad">Создать</button>
     </div>
     <div class="notepads" data-bind="foreach: notepads">
-        <div class="notepad-i" data-bind="text: notepadName, click: $parent.openNotepad"></div>
+        <div class="notepad-i" data-bind="text: notepadName, click: $parent.openNotepad" onclick="selectNotepad(this)"></div>
     </div>
     <div class="notepad-content">
+        <img data-bind="attr: { src: notepadImage }" />
         <textarea rows="20" data-bind="value: notepadContent"></textarea>
         <button class="btn btn-success" data-bind="click: saveContent">Сохранить</button>
     </div>

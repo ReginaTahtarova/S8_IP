@@ -41,10 +41,16 @@ function updateNotepads() {
     });
 }
 
+function selectNotepad(notepad) {
+    $('.selected').removeClass('selected');
+    $(notepad).addClass('selected');
+}
+
 function ViewModel() {
     this.newNotepadName = ko.observable();
     this.notepads = ko.observableArray();
     this.notepadContent = ko.observable();
+    this.notepadImage = ko.observable('/start/image/Блокноты');
 
     this.currentNotepad;
 
@@ -57,6 +63,7 @@ function ViewModel() {
 
     this.openNotepad = function (notepad) {
         that.currentNotepad = notepad.notepadName;
+        that.notepadImage('/start/image/' + notepad.notepadName);
 
         model.getNotepadContent(notepad.notepadName).success(function (content) {
             that.notepadContent(content);

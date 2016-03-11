@@ -11,12 +11,12 @@ namespace Lab_2
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{controller}/{action}/{name}",
                 defaults: new
                 {
                     controller = "Start",
                     action = "Index",
-                    id = UrlParameter.Optional
+                    name = UrlParameter.Optional
                 }
             );
         }
