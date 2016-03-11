@@ -42,7 +42,7 @@ namespace Lab_2
 
         public static Stream ToStream(Image image, ImageFormat formaw)
         {
-            var stream = new System.IO.MemoryStream();
+            var stream = new MemoryStream();
             image.Save(stream, formaw);
             stream.Position = 0;
             return stream;

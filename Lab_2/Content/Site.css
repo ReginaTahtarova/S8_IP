@@ -17,7 +17,7 @@
     width: 18%;
     margin-right: 2%;
     position: relative;
-    top: 25px;
+    top: 30px;
 }
 
 .notepad-i {
@@ -27,6 +27,7 @@
     word-wrap: break-word;
     box-shadow: 0 1px 5px rgba(0,0,0,0.3);
     margin-bottom: 10px;
+    border-radius: 5px;
 }
 
 .notepad-content {
@@ -46,6 +47,7 @@
 .notepad-content img {
     display: block;
     margin: 0 auto;
+    margin-bottom: 5px;
 }
 
 .selected {
