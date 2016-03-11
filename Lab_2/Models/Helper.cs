@@ -4,13 +4,17 @@ using System.IO;
 
 namespace Lab_2
 {
-    public class Helper
+    public static class Helper
     {
-        public static Image ConvertTextToImage(string text, Font font, Color textColor, Color backColor)
+        public static Image ToImage(this string text)
         {
             //first, create a dummy bitmap just to get a graphics object
             Image img = new Bitmap(1, 1);
+
             var drawing = Graphics.FromImage(img);
+            var font = new Font("Courier New", 15);
+            var textColor = Color.Black;
+            var backColor = Color.White;
 
             //measure the string to see how big the image needs to be
             var textSize = drawing.MeasureString(text, font);
@@ -40,11 +44,14 @@ namespace Lab_2
             return img;
         }
 
-        public static Stream ToStream(Image image, ImageFormat formaw)
+        public static Stream ToStream(this Image image)
         {
             var stream = new MemoryStream();
-            image.Save(stream, formaw);
+            var format = ImageFormat.Png;
+
+            image.Save(stream, format);
             stream.Position = 0;
+
             return stream;
         }
     }

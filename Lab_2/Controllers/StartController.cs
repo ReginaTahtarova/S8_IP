@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Lab_2.Controllers
 {
@@ -13,8 +11,9 @@ namespace Lab_2.Controllers
 
         public ActionResult Image(string name)
         {
-            var image = Helper.ConvertTextToImage(name, new Font("Courier New", 15), Color.Black, Color.White);
-            var stream = Helper.ToStream(image, ImageFormat.Png);
+            var stream = name
+                .ToImage()
+                .ToStream();
 
             return File(stream, "image/png");
         }
