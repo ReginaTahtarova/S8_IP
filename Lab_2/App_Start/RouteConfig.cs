@@ -19,6 +19,16 @@ namespace Lab_2
                     name = UrlParameter.Optional
                 }
             );
+
+            routes.MapRoute(
+                name: "ShowNotepad",
+                url: "notepad",
+                defaults: new
+                {
+                    controller = "Start",
+                    action = "Show"
+                }
+            );
         }
     }
 }

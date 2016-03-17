@@ -17,5 +17,12 @@ namespace Lab_2.Controllers
 
             return File(stream, "image/png");
         }
+
+        public ActionResult Show()
+        {
+            //ViewBag.Name = name;
+
+            return View("Index");
+        }
     }
 }
