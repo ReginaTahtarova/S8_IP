@@ -13,6 +13,7 @@
 
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <script src="/Scripts/knockout-3.4.0.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
     <script src="/Scripts/Site.js"></script>
 </head>
 <body onload="init()">
@@ -28,6 +29,32 @@
         <textarea rows="20" data-bind="value: notepadContent" class="form-control"></textarea>
         <button class="btn btn-success" data-bind="click: saveContent">Сохранить</button>
     </div>
-    <p>@ViewBag.Name</p>
+    @{
+        if (ViewBag.Name != null)
+        {
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <script>
+                                model.getNotepadContent('@ViewBag.Name').success(function (content) {
+                                    $('.modal-body').text(content);
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#modal').modal();
+                }, 0);
+            </script>
+        }
+    }
 </body>
 </html>
