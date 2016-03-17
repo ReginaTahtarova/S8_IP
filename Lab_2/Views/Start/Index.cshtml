@@ -4,7 +4,7 @@
     LocalData.LoadNotepads();
 }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <title>@ViewBag.Title</title>
 
@@ -13,45 +13,30 @@
 
     <script src="/Scripts/jquery-1.10.2.min.js"></script>
     <script src="/Scripts/knockout-3.4.0.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
     <script src="/Scripts/Site.js"></script>
 </head>
-<body onload="init()">
+<body>
     <div class="new-notepad">
         <input type="text" id="notepad-name" class="form-control" placeholder="Имя блокнота" data-bind="value: newNotepadName" />
         <button id="btn-create" class="btn btn-success" data-bind="click: createNotepad">Создать</button>
     </div>
     <div class="notepads" data-bind="foreach: notepads">
-        <div class="notepad-i" data-bind="text: notepadName, click: $parent.openNotepad" onclick="selectNotepad(this)"></div>
+        <div class="notepad-i" data-bind="text: notepadName, name: notepadName, click: $parent.openNotepad"></div>
     </div>
     <div class="notepad-content">
         <img data-bind="attr: { src: notepadImage }" />
         <textarea rows="20" data-bind="value: notepadContent" class="form-control"></textarea>
         <button class="btn btn-success" data-bind="click: saveContent">Сохранить</button>
     </div>
+    <script>
+        init();
+    </script>
     @{
         if (ViewBag.Name != null)
         {
-            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            <script>
-                                model.getNotepadContent('@ViewBag.Name').success(function (content) {
-                                    $('.modal-body').text(content);
-                                });
-                            </script>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <script>
                 setTimeout(function() {
-                    $('#modal').modal();
+                    viewModel.openNotepad({ notepadName: '@ViewBag.Name' });
                 }, 0);
             </script>
         }

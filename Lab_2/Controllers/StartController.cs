@@ -24,5 +24,10 @@ namespace Lab_2.Controllers
 
             return View("Index");
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }

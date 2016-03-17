@@ -18,13 +18,18 @@
         return $.get('/api/notepad/getNotepadContent/' + name);
     },
 
-    updateNotepad: function(name, content) {
+    updateNotepad: function (name, content) {
         $.post('/api/notepad/update', {
             NotepadName: name,
             Content: content
-        }).success(function() {
+        }).success(function () {
             alert('Обновление прошло успешно!');
         });
+    },
+
+    selectNotepad: function (notepadName) {
+        $('.selected').removeClass('selected');
+        $('.notepad-i:contains(' + notepadName + ')').addClass('selected');
     }
 }
 
@@ -39,11 +44,6 @@ function updateNotepads() {
     model.getNotepads().success(function (data) {
         viewModel.notepads(data);
     });
-}
-
-function selectNotepad(notepad) {
-    $('.selected').removeClass('selected');
-    $(notepad).addClass('selected');
 }
 
 function ViewModel() {
@@ -68,9 +68,11 @@ function ViewModel() {
         model.getNotepadContent(notepad.notepadName).success(function (content) {
             that.notepadContent(content);
         });
+
+        model.selectNotepad(notepad.notepadName);
     };
 
-    this.saveContent = function() {
+    this.saveContent = function () {
         if (!this.currentNotepad) {
             return;
         }

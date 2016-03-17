@@ -10,6 +10,26 @@ namespace Lab_2
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Start",
+                url: "",
+                defaults: new
+                {
+                    controller = "Start",
+                    action = "Index"
+                }
+            );
+
+            routes.MapRoute(
+                name: "Create",
+                url: "notepad/create",
+                defaults: new
+                {
+                    controller = "Start",
+                    action = "Create"
+                }
+            );
+
+            routes.MapRoute(
                 name: "ShowNotepad",
                 url: "notepad/{name}",
                 defaults: new
@@ -21,12 +41,12 @@ namespace Lab_2
             );
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{name}",
+                name: "Image",
+                url: "Start/Image/{name}",
                 defaults: new
                 {
                     controller = "Start",
-                    action = "Index",
+                    action = "Image",
                     name = UrlParameter.Optional
                 }
             );
