@@ -21,7 +21,7 @@
         <button id="btn-create" class="btn btn-success" data-bind="click: createNotepad">Создать</button>
     </div>
     <div class="notepads" data-bind="foreach: notepads">
-        <div class="notepad-i" data-bind="text: notepadName, name: notepadName, click: $parent.openNotepad"></div>
+        <div class="notepad-i" data-bind="text: notepadName, attr: { name: notepadName }, click: $parent.openNotepad"></div>
     </div>
     <div class="notepad-content">
         <img data-bind="attr: { src: notepadImage }" />

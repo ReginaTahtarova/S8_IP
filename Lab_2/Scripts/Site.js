@@ -29,7 +29,7 @@
 
     selectNotepad: function (notepadName) {
         $('.selected').removeClass('selected');
-        $('.notepad-i:contains(' + notepadName + ')').addClass('selected');
+        $('.notepad-i[name="' + notepadName + '"]').addClass('selected');
     }
 }
 

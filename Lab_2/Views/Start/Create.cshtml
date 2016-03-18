@@ -10,9 +10,13 @@
     <script src="/Scripts/Site.js"></script>
 </head>
 <body onload="init()">
+    <h1>Создание блокнота</h1>
     <div class="new-notepad">
         <input type="text" id="notepad-name" class="form-control" placeholder="Имя блокнота" data-bind="value: newNotepadName" />
         <button id="btn-create" class="btn btn-success" data-bind="click: createNotepad">Создать</button>
     </div>
+    <form action="/" method="GET">
+        <button class="btn btn-toolbar back-to-start-btn" type="submit">Вернуться к блокнотам</button>
+    </form>
 </body>
 </html>

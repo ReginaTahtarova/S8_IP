@@ -53,3 +53,13 @@
 .selected {
     background-color: aquamarine;
 }
+
+h1 {
+    font-family: fantasy;
+    text-align: center;
+}
+
+.back-to-start-btn {
+    display: block;
+    margin-left: auto;
+}
